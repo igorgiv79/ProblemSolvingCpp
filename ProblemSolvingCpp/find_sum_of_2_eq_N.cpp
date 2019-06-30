@@ -5,6 +5,9 @@
 
 #include <gtest/gtest.h>
 
+// PROBLEM: How do you find all pairs of an integer array whose sum is equal to a given number? (Question #4)
+// URL: https://hackernoon.com/50-data-structure-and-algorithms-interview-questions-for-programmers-b4b1ac61f5b0
+
 using int_vector = std::vector<int>;
 using int_pair = std::pair<int, int>;
 using int_pair_vector = std::vector<int_pair>;
