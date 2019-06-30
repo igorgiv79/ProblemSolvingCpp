@@ -1,0 +1,12 @@
+Debug
+Release
+CMakeFiles
+CMakeScripts
+*.build
+CMakeCache.txt
+build
+Makefile
+.DS_Store
+*.cmake
+*.xcodeproj
+
