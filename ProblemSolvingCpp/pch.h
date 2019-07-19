@@ -10,5 +10,13 @@
 #define PCH_H
 
 #include <iostream>
+#include <vector>
+#include <string>
+#include <utility>
+#include <unordered_map>
+#include <unordered_set>
+#include <algorithm>
+#include <memory>
+#include <stack>
 
 #endif //PCH_H

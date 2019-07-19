@@ -21,6 +21,19 @@ NodePtr reverse_linked_list (NodePtr head)
 	return prev;
 }
 
+NodePtr reverse_linked_list_r (NodePtr prev, NodePtr head) {
+	NodePtr next = head->next;
+	head->next = prev;
+	if (next != nullptr) {
+		return reverse_linked_list_r (head, next);
+	}
+	return head;
+}
+
+NodePtr reverse_linked_list_recursive (NodePtr head) {
+	return reverse_linked_list_r (nullptr, head);
+}
+
 namespace {
 	struct test_case {
 		NodePtr srcList;
@@ -42,18 +55,22 @@ TEST_P(RevLinkedListTest, basic) {
 }
 
 INSTANTIATE_TEST_SUITE_P(Basic, RevLinkedListTest,
-			testing::Values(
-								test_case {
-									make_shared<Node>(1, make_shared<Node>(2, make_shared<Node>(3))),
-									make_shared<Node>(3, make_shared<Node>(2, make_shared<Node>(1)))
-								},
-								test_case {
-									make_shared<Node>(1, make_shared<Node>(2)),
-									make_shared<Node>(2, make_shared<Node>(1))
-								},
-								 test_case {
-									 make_shared<Node>(1),
-									 make_shared<Node>(2)
-								 }
-			 )
+	testing::Values(
+		test_case {
+			make_shared<Node>(1, make_shared<Node>(2, make_shared<Node>(3))),
+			make_shared<Node>(3, make_shared<Node>(2, make_shared<Node>(1)))
+		},
+		test_case {
+			make_shared<Node>(1, make_shared<Node>(1)),
+			make_shared<Node>(1, make_shared<Node>(1))
+		}
+	)
 );
+
+TEST (RevLinkedListRecursive, Main) {
+
+	NodePtr head = make_shared<Node> (1, make_shared<Node> (2, make_shared<Node> (3)));
+	NodePtr rev = reverse_linked_list_recursive (head);
+	NodePtr expected = make_shared<Node> (3, make_shared<Node> (2, make_shared<Node> (1)));
+	EXPECT_EQ (*rev, *expected);
+}
